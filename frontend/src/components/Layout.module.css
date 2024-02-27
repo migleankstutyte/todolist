@@ -1,0 +1,6 @@
+.container {
+  margin-top: 1rem;
+  background-color: var(--mantine-color-body);
+  border-radius: 5px;
+  padding: 2rem 1rem;
+}

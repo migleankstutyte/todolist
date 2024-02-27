@@ -1,0 +1,16 @@
+.actionButtonsContainer {
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  justify-content: flex-end;
+}
+
+.itemsTable {
+  tbody {
+    tr{
+      &:hover {
+        background-color: var(--mantine-color-blue-0);
+        cursor: pointer;
+      }
+    }
+  }
+}

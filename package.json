@@ -1,0 +1,22 @@
+{
+  "private": true,
+  "name": "todo-coding-challenge",
+  "license": "MIT",
+  "author": "Sigitas Kuodzevicius",
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "backend:setup": "yarn workspace backend setup",
+    "backend:start": "yarn workspace backend dev",
+    "backend:build": "yarn workspace backend build",
+    "backend:lint": "yarn workspace backend lint",
+    "backend:format": "yarn workspace backend prettier",
+    "frontend:dev": "yarn workspace frontend dev",
+    "frontend:build": "yarn workspace frontend build"
+  }
+}
