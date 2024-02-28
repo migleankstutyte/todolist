@@ -8,8 +8,7 @@ export type TTodoItem = {
   status: string;
   publishDate: string;
 };
-// TODO Implement data query from backend
-// Get all ToDo List
+
 const useTodos = () => {
   const [todos, setTodos] = useState<TTodoItem[]>([]);
   const [todo, setTodo] = useState<TTodoItem>();
@@ -18,7 +17,6 @@ const useTodos = () => {
   const [isEditingTodo, setIsEditingTodo] = useState<boolean>(false);
 
   const createTodo = async (todo: TTodoItem) => {
-    console.log('todo in createTodo', todo);
     try {
       setIsCreatingTodo(true);
       const response = await fetch('http://localhost:3030/posts', {
