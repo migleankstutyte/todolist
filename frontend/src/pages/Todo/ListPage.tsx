@@ -1,7 +1,7 @@
 import { Badge, Button, Group, LoadingOverlay, Table } from '@mantine/core';
 import { Link, useNavigate } from 'react-router-dom';
 import classes from './ToDo.module.css';
-import useTodos from 'src/hooks/useTodos';
+import useTodos from '../../hooks/useTodos';
 import { useEffect } from 'react';
 
 export enum PriorityColors {
