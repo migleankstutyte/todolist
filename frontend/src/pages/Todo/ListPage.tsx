@@ -26,6 +26,7 @@ export const ListPage = () => {
           New item
         </Button>
       </Group>
+      {/* adding LoadingOverlay while loading Todos */}
       <LoadingOverlay
         visible={isLoadingTodos}
         zIndex={1000}

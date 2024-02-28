@@ -16,10 +16,15 @@ export const EditPage = () => {
     if (currentTodo) setTodo(currentTodo);
   }, [currentTodo?.id]);
 
+  // additional check to identify if form was edited. Value is passed to dissabled variable
+  let formWasEdited = false;
+  if (JSON.stringify(currentTodo) !== JSON.stringify(todo))
+    formWasEdited = true;
+
   const onFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     editTodo(todo);
-    navigate('/todos');
+    navigate('/todos'); // after submit navigate to TodoList page
   };
 
   return (
@@ -29,6 +34,7 @@ export const EditPage = () => {
       todo={todo}
       setTodo={setTodo}
       submitLabel="Save"
+      formWasEdited={formWasEdited}
     />
   );
 };

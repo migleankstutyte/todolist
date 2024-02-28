@@ -7,11 +7,13 @@ export const CreatePage = () => {
   const [todo, setTodo] = useState<TTodoItem>({});
 
   const navigate = useNavigate();
+
   const { createTodo, isCreatingTodo } = useTodos();
+
   const onFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     createTodo(todo);
-    navigate('/todos');
+    navigate('/todos'); // after submit navigate to TodoList page
   };
 
   return (

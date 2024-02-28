@@ -16,6 +16,7 @@ type TodoFormProps = {
   todo: TTodoItem;
   setTodo: (arg: TTodoItem) => void;
   submitLabel: string;
+  formWasEdited?: boolean; // needed only for Edit Todo list item case
 };
 export const TodoForm = ({
   onFormSubmit,
@@ -23,13 +24,16 @@ export const TodoForm = ({
   todo,
   setTodo,
   submitLabel,
+  formWasEdited,
 }: TodoFormProps) => {
   const { title, priority, status, content } = todo;
 
-  const disabled = !title || !priority || !status || !content;
+  // added disabled check and passed it to submit button
+  const disabled = !title || !priority || !status || !content || !formWasEdited;
 
   return (
     <section>
+      {/* adding LoadingOverlay while loading */}
       <LoadingOverlay
         visible={loading}
         zIndex={1000}
