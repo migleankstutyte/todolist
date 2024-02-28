@@ -5,6 +5,7 @@ import { ListPage } from '@pages/Todo/ListPage';
 import { SwaggerDocs } from '@components/SwagerDocs';
 import { CreatePage } from '@pages/Todo/CreatePage';
 import { ItemPage } from '@pages/Todo/ItemPage';
+import { EditPage } from '@pages/Todo/EditPage';
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
       {
         path: '/todos/create',
         element: <CreatePage />,
+      },
+      {
+        path: '/todos/edit/:id',
+        element: <EditPage />,
       },
       {
         path: '/todos/:id',

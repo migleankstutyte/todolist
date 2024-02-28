@@ -1,54 +1,23 @@
-import { Badge, Button, Group, Table } from '@mantine/core';
+import { Badge, Button, Group, LoadingOverlay, Table } from '@mantine/core';
 import { Link, useNavigate } from 'react-router-dom';
 import classes from './ToDo.module.css';
+import useTodos from 'src/hooks/useTodos';
+import { useEffect } from 'react';
 
-const elements = [
-  {
-    id: 1,
-    title: 'my first item',
-    content: "implement query to get all ToDo's",
-    priority: 'blocker',
-    status: 'pending',
-    publishedAt: '2024-02-09T04:15:00.450Z',
-  },
-  {
-    id: 2,
-    title: 'my second item',
-    content: 'implement ToDo item inner page',
-    priority: 'major',
-    status: 'pending',
-    publishedAt: '2024-02-09T04:15:00.450Z',
-  },
-  {
-    id: 3,
-    title: 'my third item',
-    content: 'fix routing',
-    priority: 'blocker',
-    status: 'pending',
-    publishedAt: '2024-02-09T04:15:00.450Z',
-  },
-  {
-    id: 4,
-    title: 'my fourth item',
-    content: 'implement some tests',
-    priority: 'blocker',
-    status: 'pending',
-    publishedAt: '2024-02-09T04:15:00.450Z',
-  },
-  {
-    id: 5,
-    title: 'my fifth item',
-    content: 'apply clean code principles',
-    priority: 'blocker',
-    status: 'pending',
-    publishedAt: '2024-02-09T04:15:00.450Z',
-  },
-];
+export enum PriorityColors {
+  minor = 'yellow',
+  major = 'green',
+  blocker = 'red',
+}
 
 export const ListPage = () => {
   const navigate = useNavigate();
 
-  // TODO Implement data query from backend
+  const { todos, loadTodos, isLoadingTodos } = useTodos();
+
+  useEffect(() => {
+    loadTodos();
+  }, []);
 
   return (
     <section>
@@ -57,28 +26,35 @@ export const ListPage = () => {
           New item
         </Button>
       </Group>
+      <LoadingOverlay
+        visible={isLoadingTodos}
+        zIndex={1000}
+        overlayProps={{ radius: 'sm', blur: 2 }}
+      />
       <Table className={classes.itemsTable}>
         <Table.Thead>
           <Table.Tr>
             <Table.Th>Title</Table.Th>
             <Table.Th>Criticality</Table.Th>
             <Table.Th>Status</Table.Th>
-            <Table.Th>Publisher at</Table.Th>
+            <Table.Th>Published at</Table.Th>
           </Table.Tr>
         </Table.Thead>
         <Table.Tbody>
-          {elements.map((element) => (
+          {todos.map((todo) => (
             <Table.Tr
-              onClick={() => navigate(`/todos/${element.id}`)}
-              key={element.title}
+              onClick={() => navigate(`/todos/${todo.id}`)}
+              key={todo.id}
             >
-              <Table.Td>{element.title}</Table.Td>
+              <Table.Td>{todo.title}</Table.Td>
               <Table.Td>
                 {/* Extra points if you make badge different colors */}
-                <Badge>{element.priority}</Badge>
+                <Badge color={PriorityColors[todo.priority]}>
+                  {todo.priority}
+                </Badge>
               </Table.Td>
-              <Table.Td>{element.status}</Table.Td>
-              <Table.Td>{element.publishedAt}</Table.Td>
+              <Table.Td>{todo.status}</Table.Td>
+              <Table.Td>{todo.publishDate}</Table.Td>
             </Table.Tr>
           ))}
         </Table.Tbody>

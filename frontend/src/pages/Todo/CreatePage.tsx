@@ -1,31 +1,26 @@
-import {
-  Button,
-  Group,
-  Select,
-  Stack,
-  TextInput,
-} from '@mantine/core';
-import React from 'react';
-import classes from './ToDo.module.css';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import useTodos, { TTodoItem } from 'src/hooks/useTodos';
+import { TodoForm } from './TodoForm';
 
 export const CreatePage = () => {
+  const [todo, setTodo] = useState<TTodoItem>({});
+
+  const navigate = useNavigate();
+  const { createTodo, isCreatingTodo } = useTodos();
   const onFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    createTodo(todo);
+    navigate('/todos');
   };
 
   return (
-    <section>
-      <form onSubmit={onFormSubmit}>
-        <Stack>
-          <TextInput label="Title" name="title" />
-          <Select label="Criticality" name="criticality" />
-          <Select label="Status" name="status" />
-        </Stack>
-        <Group className={classes.actionButtonsContainer}>
-          <Button variant="subtle">Cancel</Button>
-          <Button type="submit">create</Button>
-        </Group>
-      </form>
-    </section>
+    <TodoForm
+      onFormSubmit={onFormSubmit}
+      loading={isCreatingTodo}
+      todo={todo}
+      setTodo={setTodo}
+      submitLabel="Create"
+    />
   );
 };

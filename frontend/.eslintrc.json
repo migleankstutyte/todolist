@@ -1,16 +1,14 @@
 {
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "project": "./tsconfig.json",
+    "project": "**./tsconfig.json",
     "ecmaVersion": 2021,
     "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true
     }
   },
-  "ignorePatterns": [
-    "**/*.css"
-  ],
+  "ignorePatterns": ["**/*.css"],
   "extends": [
     "mantine",
     "plugin:@typescript-eslint/recommended",
@@ -19,7 +17,7 @@
     "plugin:import/typescript",
     "eslint-config-prettier"
   ],
-  "plugins": ["@typescript-eslint", "prettier", "import"],
+  "plugins": ["@typescript-eslint", "prettier", "import", "react"],
   "settings": {
     "import/extensions": [".ts", ".tsx"],
     "import/resolver": {
@@ -29,7 +27,12 @@
     }
   },
   "rules": {
-    "prettier/prettier": "error",
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ],
     "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": ["error"],
     "react/react-in-jsx-scope": "off"

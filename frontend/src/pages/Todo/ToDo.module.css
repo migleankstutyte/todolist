@@ -6,11 +6,15 @@
 
 .itemsTable {
   tbody {
-    tr{
+    tr {
       &:hover {
         background-color: var(--mantine-color-blue-0);
         cursor: pointer;
       }
     }
   }
+}
+
+.actionButton {
+  margin-top: 20px;
 }
