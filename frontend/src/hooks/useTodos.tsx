@@ -56,6 +56,7 @@ const useTodos = () => {
 
   const editTodo = async (todo: TTodoItem) => {
     try {
+      setIsEditingTodo(true);
       const response = await fetch(`http://localhost:3030/posts/${todo.id}`, {
         method: 'PUT',
         body: JSON.stringify(todo),
@@ -65,6 +66,7 @@ const useTodos = () => {
     } catch (error) {
       console.error(error);
     }
+    setIsEditingTodo(false);
   };
 
   return {
@@ -78,6 +80,7 @@ const useTodos = () => {
     getTodo,
     editTodo,
     isEditingTodo,
+    setIsEditingTodo,
   };
 };
 
