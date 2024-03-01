@@ -24,12 +24,12 @@ export const TodoForm = ({
   todo,
   setTodo,
   submitLabel,
-  formWasEdited,
+  formWasEdited = false,
 }: TodoFormProps) => {
   const { title, priority, status, content } = todo;
 
   // added disabled check and passed it to submit button
-  const disabled = !title || !priority || !status || !content || !formWasEdited;
+  const disabled = !title || !priority || !status || !content || formWasEdited;
 
   return (
     <section>

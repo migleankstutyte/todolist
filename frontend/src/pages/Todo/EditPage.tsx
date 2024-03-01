@@ -17,9 +17,9 @@ export const EditPage = () => {
   }, [currentTodo?.id]);
 
   // additional check to identify if form was edited. Value is passed to dissabled variable
-  let formWasEdited = false;
+  let formWasEdited = true;
   if (JSON.stringify(currentTodo) !== JSON.stringify(todo))
-    formWasEdited = true;
+    formWasEdited = false;
 
   const onFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
